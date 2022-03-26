@@ -1,0 +1,57 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "GridMap",
+"class": "Bitmask3D",
+"language": "GDScript",
+"path": "res://Bitmask3D/Bitmask3D.gd"
+}, {
+"base": "MeshInstance",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://Tile/Tile.gd"
+}, {
+"base": "GridMap",
+"class": "TileMap3D",
+"language": "GDScript",
+"path": "res://TileMap3D/TileMap3D.gd"
+}, {
+"base": "Spatial",
+"class": "TileSet3D",
+"language": "GDScript",
+"path": "res://TileSet3D/TileSet3D.gd"
+} ]
+_global_script_class_icons={
+"Bitmask3D": "res://Bitmask3D/Icon.svg",
+"Tile": "res://Tile/TileIcon.svg",
+"TileMap3D": "res://TileMap3D/Icon.svg",
+"TileSet3D": "res://TileSet3D/Icon.svg"
+}
+
+[application]
+
+config/name="TileMap3D"
+config/icon="res://Icon.svg"
+
+[debug]
+
+shapes/collision/contact_color=Color( 1, 0.2, 0.101961, 0.8 )
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+environment/default_environment="res://default_env.tres"
