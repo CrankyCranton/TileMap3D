@@ -4,21 +4,21 @@ tool
 
 
 export var tile_set := "res://" setget _on_tile_set_set
-export var update := false setget _on_update_set
-export var _seed := 0 setget _on_seed_set
+export var map_seed := 0 setget _on_seed_set
+export var _update := false setget _on_update_set
 
 var tile_set_data := []
-var last_cells := []
+var _last_cells := []
 
 
 func _physics_process(_delta: float) -> void:
-	if get_used_cells() != last_cells: #don't work fully
+	if get_used_cells() != _last_cells: #doesn't work properly
 		update_map()
-		last_cells = get_used_cells()
+		_last_cells = get_used_cells()
 
 
 func update_map() -> void:
-	seed(_seed)
+	seed(map_seed)
 	for c in get_used_cells():
 		auto_tile(c)
 		
@@ -61,16 +61,18 @@ func auto_tile(what: Vector3) -> void:
 		set_cell_item(what.x, what.y, what.z, tile[0], tile[1])
 
 
-func load_tile_set() -> void:
+func load_tile_set(tile_set := self.tile_set) -> int:
 	var file := File.new()
 	var error := file.open(tile_set, file.READ)
 	if error == OK:
 		tile_set_data = file.get_var(true)
+		self.tile_set = tile_set
 	else:
 		push_error("Error " + str(error) + " has occurred when opening file " + tile_set)
 	
 	file.close()
 	update_map()
+	return error
 
 
 func _on_tile_set_set(value: String) -> void:
@@ -78,12 +80,12 @@ func _on_tile_set_set(value: String) -> void:
 	load_tile_set()
 
 
-func _on_update_set(_value: bool) -> void: #needs to be automated
+func _on_update_set(_value: bool) -> void:
 	update_map()
 
 
 func _on_seed_set(value: int) -> void:
-	_seed = value
+	map_seed = value
 	update_map()
 
 
