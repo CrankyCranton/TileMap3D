@@ -16,5 +16,5 @@ The following will be a more in depth explanation for each node.
 
 # Bugs
 1. Priority is not very efficient (see TileMap3D.gd line 51).
-2. Automatically updating TileMap3D doesn't work fully (see TileMap3D.gd line 15).
+2. Automatically updating the TileMap3D doesn't work fully (see TileMap3D.gd line 15).
 3. And probably many other bugs.
