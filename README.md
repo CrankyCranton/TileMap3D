@@ -7,7 +7,22 @@ There are four additional nodes in this addon; the TileMap3D, TileSet3D, Tile, a
 The following will be a more in depth explanation for each node.
 
 # The TileMap3D
-
+Properties:
+  int map_seed [defalt: 0]:
+    The seed used to determine tiles needing priority.
+  String tile_set [defalt: "res://"]:
+    The path to the file containing the tile set data (see line <num> of the documentation)
+  bool update [defalt: false]:
+    When set to any value, it will not retain the value, but instead acts as a trigger to call the function update_map() in the editor.
+  
+Functions:
+  void auto_tile(what: Vector3):
+    Applies auto tiling to the tile at what.
+  int load_tile_set(tile_set: String)
+    
+  void update_map():
+    
+  
 # The TileSet3D
 
 # The Tile
