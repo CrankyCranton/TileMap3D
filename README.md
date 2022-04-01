@@ -31,6 +31,7 @@ bool _update [defalt: false]:
   When set to any value, it will not retain the value, but instead acts as a trigger to call the function update_map() in the editor.
 
 Functions:
+
 void auto_tile(what: Vector3):
   Updates the tile at what.
 
@@ -62,6 +63,7 @@ float space [defalt: 0.0]:
   When set, it automaticly positions the tiles in a line with spacing between the tiles equal to the variables value as to see them better.
 
 Functions:
+
 void add_collider(to: MeshInstance):
   Removes all colliders and then adds a collider to the tile to.
 
