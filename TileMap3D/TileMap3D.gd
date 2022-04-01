@@ -8,13 +8,13 @@ export var map_seed := 0 setget _on_seed_set
 export var _update := false setget _on_update_set
 
 var tile_set_data := []
-var _last_cells := []
+#var _last_cells := []
 
 
 func _physics_process(_delta: float) -> void:
-	if get_used_cells() != _last_cells: #doesn't work properly
-		update_map()
-		_last_cells = get_used_cells()
+	#if get_used_cells() != _last_cells: #doesn't work properly
+	update_map()
+	#_last_cells = get_used_cells()
 
 
 func update_map() -> void:
@@ -61,6 +61,7 @@ func auto_tile(what: Vector3) -> void:
 		set_cell_item(what.x, what.y, what.z, tile[0], tile[1])
 
 
+# warning-ignore:shadowed_variable
 func load_tile_set(tile_set := self.tile_set) -> int:
 	var file := File.new()
 	var error := file.open(tile_set, file.READ)
@@ -77,6 +78,7 @@ func load_tile_set(tile_set := self.tile_set) -> int:
 
 func _on_tile_set_set(value: String) -> void:
 	tile_set = value
+# warning-ignore:return_value_discarded
 	load_tile_set()
 
 
@@ -90,4 +92,5 @@ func _on_seed_set(value: int) -> void:
 
 
 func _on_TileMap3D_tree_entered() -> void:
+# warning-ignore:return_value_discarded
 	load_tile_set()

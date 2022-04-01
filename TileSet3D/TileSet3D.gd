@@ -5,7 +5,7 @@ tool
 
 export var convex_collisions := false setget _on_convex_collisions_set
 export var has_colliders := false setget _on_has_colliders_set
-export var step := 0.0 setget _on_step_set
+export var space := 0.0 setget _on_step_set
 export var _export := false setget _on_export_set
 export var export_path := "res://"
 export var file_name := ""
@@ -51,7 +51,7 @@ func get_tile_set_data() -> Array:
 
 func _on_convex_collisions_set(value: bool) -> void:
 	convex_collisions = value
-	self.has_colliders = has_colliders
+	_on_has_colliders_set(has_colliders)
 
 
 func _on_has_colliders_set(value: bool) -> void:
@@ -63,12 +63,12 @@ func _on_has_colliders_set(value: bool) -> void:
 
 
 func _on_step_set(value: float) -> void:
-	step = value
-	var curent_position: float = -get_child_count() / 2.0 * step
+	space = value
+	var curent_position: float = -get_child_count() / 2.0 * value
 	for t in get_children():
 		if t is MeshInstance:
 			t.translation = Vector3.RIGHT * curent_position
-			curent_position += step
+			curent_position += value
 
 
 func _on_export_set(_value: bool) -> void:
