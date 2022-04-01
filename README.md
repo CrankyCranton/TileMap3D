@@ -19,31 +19,25 @@ This means data containing both auto tiling and priority.
 Properties:
 
 int map_seed [defalt: 0]:
-  The seed used to determine tiles needing priority.
+  The seed used to determine tiles needing priority. Tiles only need priority when there are multiple different tiles that have a bitmask that fit a particular location.
 
 String tile_set [defalt: "res://"]:
-  
   The path to the file containing the tile set data (see line 61 of the documentation).
 
 Array tile_set_data [defalt: []]:
-  
   As the name suggests, it is the variable containing the tile set data.
 
 bool _update [defalt: false]:
-  
   When set to any value, it will not retain the value, but instead acts as a trigger to call the function update_map() in the editor.
 
 Functions:
 void auto_tile(what: Vector3):
-  
   Updates the tile at what.
 
 Error load_tile_set(tile_set: String = self.tile_set):
-  
   Loads a tile set data file from the path tile_set. If this field is empty, it loads it from self.tile_set. If no errors occur when opening the file, it assigns tile_set to self.tile_set.
 
 void update_map():
-  
   Updates the TileMap3D.
 
 # The TileSet3D
