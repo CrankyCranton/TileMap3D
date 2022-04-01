@@ -48,6 +48,7 @@ void update_map():
 
 # The TileSet3D
 Properties:
+
 bool convex_collisions [defalt: false]:
   Used to determine whether to use convex collisions or trimesh collisions when has_colliders is set to true.
 
