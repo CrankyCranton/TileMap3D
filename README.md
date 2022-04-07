@@ -77,6 +77,17 @@ Array get_tile_set_data():
   Returns an array containing the tile set data.
 
 # The Tile
+If you are adding in tiles by draging the files from the fileSystem editor into the scene, Godot will automaticly make the tiles MeshInstances. To make them the Tile class, you can simply select all the tiles and drag in the Tile.gd file onto the script property in the inspector.
+
+Properties:
+
+PackedScene replace_with [defalt: null]:
+  If not null, it will replace any tile of this type with the value unpacked (as a scene).
+
+Functions:
+
+Dictionary get_data():
+  Returns a Dictionary containing the tile data.
 
 # The Bitmask3D
 
