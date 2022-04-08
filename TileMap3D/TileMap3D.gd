@@ -8,13 +8,13 @@ export var map_seed := 0 setget _on_seed_set
 export var _update := false setget _on_update_set
 
 var tile_set_data := []
-#var _last_cells := []
+var _last_cells := []
 
 
 func _physics_process(_delta: float) -> void:
-	#if get_used_cells() != _last_cells: #doesn't work properly
-	update_map()
-	#_last_cells = get_used_cells()
+	if get_used_cells() != _last_cells: #doesn't work properly
+		update_map()
+		_last_cells = get_used_cells()
 
 
 func update_map() -> void:
