@@ -16,13 +16,15 @@ This means data containing both auto tiling and priority.
 
 
 # The TileMap3D
+This is the 3D equivalent to the TileMap. It draws the tiles.
+
 Properties:
 
 int map_seed [defalt: 0]:
   The seed used to determine tiles needing priority. Tiles only need priority when there are multiple different tiles that have a bitmask that fit a particular location.
 
 String tile_set [defalt: "res://"]:
-  The path to the file containing the tile set data (see line 61 of the documentation).
+  The path to the file containing the tile set data (see line 57 of the documentation).
 
 Array tile_set_data [defalt: []]:
   As the name suggests, it is the variable containing the tile set data.
@@ -42,13 +44,15 @@ void update_map():
   Updates the TileMap3D.
 
 # The TileSet3D
+Rather than a Spatial node, use this node as the root of your MeshLibrary.
+
 Properties:
 
 bool convex_collisions [defalt: false]:
   Used to determine whether to use convex collisions or trimesh collisions when has_colliders is set to true.
 
 bool export [defalt: false]:
-  Like the TileMap3D's property _update (see line 21 of the documetation), this acts as a in-editor trigger to call the function export_tile_set_data().
+  Like the TileMap3D's property _update (see line 32 of the documetation), this acts as a in-editor trigger to call the function export_tile_set_data().
 
 String export_path [defalt: "res://"]:
   The file path to export to when export_tile_set_data() is called. It is important for this value to always end with a foward slash.
@@ -87,9 +91,23 @@ PackedScene replace_with [defalt: null]:
 Functions:
 
 Dictionary get_data():
-  Returns a Dictionary containing the tile data.
+  Returns a Dictionary containing the tile data from all it's Bitmask3D children and the scene to replace the tile with.
 
 # The Bitmask3D
+This is meant to be a child of a Tile node. It supplies the Tile with tile data. You can have more than one Bitmask3D as a child of a Tile. This could be useful for having more than one situation for a tile to be placed for a Tile.
+
+Properties:
+
+int priority [defalt: 1]:
+  The Bitmask3D's priority. The higher the priority, the more chance this tile will be placed when 2 or more tiles can be put at the same location. However, there is a bug when the value gets higher, it makes it harder for the TileMap3D to process it (see line 113 of the documentation).
+
+Vector3 tile_rotation [defalt: Vector3.ZERO]:
+  The rotational data of the Bitmask3D.
+
+Functions:
+
+Dictionary get_data():
+  Returns a Dictionary with the tile data from this bitmask.
 
 # Bugs
 1. Priority is not very efficient (see TileMap3D.gd line 51).
