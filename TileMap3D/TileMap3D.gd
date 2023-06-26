@@ -67,7 +67,10 @@ func load_tile_set(tile_set := self.tile_set) -> int:
 	var error := file.open(tile_set, file.READ)
 	if error == OK:
 		tile_set_data = file.get_var(true)
+<<<<<<< HEAD
 		self.tile_set = tile_set
+=======
+>>>>>>> afd9c42 (Godot 3 with bugs)
 	else:
 		push_error("Error " + str(error) + " has occurred when opening file " + tile_set)
 	
