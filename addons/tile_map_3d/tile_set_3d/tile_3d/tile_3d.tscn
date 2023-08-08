@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ewqyvr10pqi3"]
+
+[ext_resource type="Script" path="res://addons/tile_map_3d/tile_set_3d/tile_3d/tile_3d.gd" id="1_vatj6"]
+
+[node name="Tile3D" type="MeshInstance3D"]
+script = ExtResource("1_vatj6")

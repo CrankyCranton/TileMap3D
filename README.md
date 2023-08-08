@@ -1,26 +1,18 @@
 # TileMap3D
-An advanced version of the Godot GridMap node. It supports priority, auto tiling, and automated collision creation.
+An advanced version of the Godot GridMap node. It supports priority, auto tiling, and tile-to-scene replacment.
 # How to use
-This documentation assumes that you already know the basics of the Godot Game Engine and how to use the GridMap node.
+This documentation assumes that you already know how to use the GridMap and TileMap node.
 
-There are four additional nodes in this addon; the TileMap3D, TileSet3D, Tile, and Bitmask3D.
-The following will be a more in depth explanation for each node.
-
-Terminology:
-
-'update':
-This reffers to applying auto tiling, and priority.
-
-'tile set data':
-This means data containing both auto tiling and priority.
+There are four additional nodes in this addon; the TileMap3D, TileSet3D, Tile3D, and Bitmask3D.
+The following is a documentation for each node.
 
 
-# The TileMap3D
+# TileMap3D
 This is the 3D equivalent to the TileMap. It draws the tiles.
 
 Properties:
 
-int map_seed [defalt: 0]:
+int map_seed [default: 0]:
   The seed used to determine tiles needing priority. Tiles only need priority when there are multiple different tiles that have a bitmask that fit a particular location.
 
 String tile_set [defalt: "res://"]:
