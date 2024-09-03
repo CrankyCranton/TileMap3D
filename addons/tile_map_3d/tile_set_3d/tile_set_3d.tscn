@@ -4,4 +4,3 @@
 
 [node name="TileSet3D" type="Node3D"]
 script = ExtResource("1_la0wy")
-_export = null

@@ -1,7 +1,8 @@
+## The 3D equivalent to the TileMap. It draws the tiles.
+## NOTE: As of Godot 4, the TileMap as gotten a lot better.
+## This node has lagged behind and has not added to it's feature list much.
 @tool
 @icon("res://addons/tile_map_3d/tile_map_3d/icon.svg")
-## The 3D equivalent to the TileMap. It draws the tiles.
-## NOTE: As of Godot 4, TileMap as gotten a lot stronger. But this node has lagged behind and not added to it's feature list much.
 class_name TileMap3D
 extends GridMap
 
@@ -14,17 +15,17 @@ extends GridMap
 		tile_set = value
 		update()
 ## The seed used for tiles in need of priority.
-## Priority is only used when there are multiple different tiles that all have a bitmask that could all fit for a singal cell.
+## Priority is only used when there are multiple different tiles that all have a bitmask that could fit for a singal cell.
 @export var seed := 0:
 	set(value):
 		seed = value
-		_random.seed = seed
+		_rng.seed = seed
 		update()
 @export var _update := false:
 	set(_value):
 		update()
 
-var _random := RandomNumberGenerator.new()
+var _rng := RandomNumberGenerator.new()
 #var _last_cells := []
 
 
@@ -35,7 +36,8 @@ var _random := RandomNumberGenerator.new()
 
 
 func _ready() -> void:
-	update()
+	if not Engine.is_editor_hint():
+		update()
 
 
 func _notification(what: int) -> void:
@@ -45,7 +47,7 @@ func _notification(what: int) -> void:
 
 
 ## Upates auto-tiling and priority of the TileMap3D.
-## This also updates scene instantiation, but only when the game is running.
+## This also updates tile scene instantiation, but only when the game is running.
 func update() -> void:
 	if not _check_data_errors():
 		return
@@ -69,9 +71,11 @@ func auto_tile(cell: Vector3i) -> void:
 
 	var tile_options := get_tile_options(cell)
 	if tile_options.size() > 0:
-		var rand_num := _random.randi_range(1, _get_total(tile_options))
+		var rand_num := _rng.randi_range(1, tile_set.get_total_priority(tile_options))
 		var current_num := 0
 		var selected_tile := {}
+		# Sorting shouldn't matter functionality wise.
+		# TODO: Sort from greatest to least if it improves performance, else remove sorting.
 		tile_options.sort()
 		for tile in tile_options:
 			current_num += tile.priority
@@ -109,13 +113,6 @@ func get_tile_options(cell: Vector3i) -> Array[Dictionary]:
 				})
 
 	return tiles
-
-
-func _get_total(tiles: Array[Dictionary]) -> int:
-	var total := 0
-	for tile in tiles:
-		total += tile.priority
-	return total
 
 
 func _check_data_errors() -> bool:

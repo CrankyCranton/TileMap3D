@@ -11,12 +11,8 @@ config_version=5
 [application]
 
 config/name="TileMap3D"
-config/features=PackedStringArray("4.1")
-config/icon="res://Icon.svg"
-
-[debug]
-
-shapes/collision/contact_color=Color(1, 0.2, 0.101961, 0.8)
+config/features=PackedStringArray("4.3")
+config/icon="res://icon.svg"
 
 [physics]
 

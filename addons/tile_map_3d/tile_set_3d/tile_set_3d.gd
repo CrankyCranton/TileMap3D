@@ -1,22 +1,16 @@
+## This should be the root node to a scene used to generate a [MeshLibrary].
+## If you already have a tile set scene set up, then you can change the script of the root node to 'tile_set_3d.gd'
 @tool
 @icon("res://addons/tile_map_3d/tile_set_3d/icon.svg")
-class_name TileSet3D
-extends Node3D
+class_name TileSet3D extends Node3D
 
 
-## Whether to auto-generate colliders.
-@export var has_colliders := false:
-	set(value):
-		has_colliders = value
-		for t in get_children():
-			if t is MeshInstance3D:
-				add_collider(t) if has_colliders else delete_collider(t)
-## If true, the collision shapes will be generated as convex. If false (default), they will be concave.
-## Only takes affect if 'has_colliders' is set to true.
-@export var convex_collisions := false:
-	set(value):
-		convex_collisions = value
-		has_colliders = has_colliders
+enum CollisionType {
+	SIMPLIFIED_CONVEX,
+	CONVEX,
+	MULTIPLE_CONVEX,
+	TRIMESH,
+}
 
 ## Used to space-out tiles to make them more visible for editing. Messured in meters.
 @export var spacing := 0.0:
@@ -24,42 +18,76 @@ extends Node3D
 		spacing = value
 		sort_tiles(spacing)
 
+@export_group("Collision")
+## Whether to auto-generate colliders.
+@export var has_colliders := false:
+	set(value):
+		has_colliders = value
+		add_collider(self) if has_colliders else delete_collider(self)
+## The type of collision shapes to be generated.
+## Only takes affect if 'has_colliders' is set to true.
+@export var collision_type: CollisionType = 1:
+	set(value):
+		collision_type = value
+		has_colliders = has_colliders
+
+@export_group("Export")
 ## The directory to export the tile set data to.
 @export_dir var export_path := "res://"
-## The name if the exported file.
+## The name of the exported file.
 @export var file_name := ""
 
 @export var _export := false:
 	set(_value):
 		export_tile_set_data()
+@export_group("")
 
 
 ## Sorts the tile positions with the given spacing.
-func sort_tiles(spacing: int) -> void:
+func sort_tiles(spacing: float) -> void:
 	var tiles := get_children().filter(func(value: Node): return value is MeshInstance3D)
-	var width := int(floor(sqrt(tiles.size())))
+	var width := int(ceil(sqrt(tiles.size())))
 	var height := int(ceil(sqrt(tiles.size())))
 	var index := 0
 	for x in width:
 		for z in height:
-			tiles[index].global_position = Vector3(x, 0.0, z) * spacing
+			tiles[index].global_position = Vector3(-x, 0.0, -z) * spacing
 			index += 1
 
 
-## Clears the colliders on 'of', and then creates one based on 'convex_collisions'. This is used by the 'has_colliders' setter function.
-func add_collider(to: MeshInstance3D) -> void:
-	delete_collider(to)
-	to.create_convex_collision() if convex_collisions else to.create_trimesh_collision()
+## Clears the colliders on 'node', and then creates new ones based on 'collision_type'.
+## This is used by the 'has_colliders' setter function.
+func add_collider(node: Node) -> void:
+	# TODO: Optimize by combining the deleting loop with the creating loop.
+	delete_collider(node)
+	var create_collision := func(mesh: MeshInstance3D) -> void:
+		match collision_type:
+			CollisionType.SIMPLIFIED_CONVEX:
+				node.create_convex_collision(true, true)
+			CollisionType.CONVEX:
+				node.create_convex_collision()
+			CollisionType.MULTIPLE_CONVEX:
+				node.create_multiple_convex_collisions()
+			CollisionType.TRIMESH:
+				node.create_trimesh_collision()
+
+	for child in node.get_children():
+		add_collider(child)
+	if node is MeshInstance3D:
+		create_collision.call(node)
 
 
-## Deletes all direct children on 'of' that are StaticBody3D(s). This is used by the 'has_colliders' setter function.
-func delete_collider(of: MeshInstance3D) -> void:
-	for c in of.get_children():
-		if c is StaticBody3D:
-			c.queue_free()
+## Deletes all [StaticBody3D](s) on 'node'.
+## This is used by the 'has_colliders' setter function.
+func delete_collider(node: Node) -> void:
+	for child in node.get_children():
+		if child is StaticBody3D:
+			child.queue_free()
+		else:
+			delete_collider(node)
 
 
-## Exports the tile set data as a resource using 'export_path' and 'file_name'.
+## Exports the tile set data as a [TileSetData] resource using 'export_path' and 'file_name'.
 func export_tile_set_data() -> void:
 	var file_path := export_path
 	if not file_path.ends_with("/"):
