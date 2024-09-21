@@ -45,7 +45,7 @@ enum CollisionType {
 
 ## Sorts the tile positions with the given spacing.
 func sort_tiles(spacing: float) -> void:
-	var tiles := get_children().filter(func(value: Node): return value is MeshInstance3D)
+	var tiles := get_children()#.filter(func(value: Node): return value is MeshInstance3D)
 	var width := int(ceil(sqrt(tiles.size())))
 	var height := int(ceil(sqrt(tiles.size())))
 	var index := 0
@@ -58,8 +58,6 @@ func sort_tiles(spacing: float) -> void:
 ## Clears the colliders on 'node', and then creates new ones based on 'collision_type'.
 ## This is used by the 'has_colliders' setter function.
 func add_collider(node: Node) -> void:
-	# TODO: Optimize by combining the deleting loop with the creating loop.
-	delete_collider(node)
 	var create_collision := func(mesh: MeshInstance3D) -> void:
 		match collision_type:
 			CollisionType.SIMPLIFIED_CONVEX:
@@ -72,7 +70,10 @@ func add_collider(node: Node) -> void:
 				node.create_trimesh_collision()
 
 	for child in node.get_children():
-		add_collider(child)
+		if child is StaticBody3D:
+			child.queue_free()
+		else:
+			add_collider(child)
 	if node is MeshInstance3D:
 		create_collision.call(node)
 
