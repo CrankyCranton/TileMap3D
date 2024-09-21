@@ -85,7 +85,7 @@ func delete_collider(node: Node) -> void:
 		if child is StaticBody3D:
 			child.queue_free()
 		else:
-			delete_collider(node)
+			delete_collider(child)
 
 
 ## Exports the tile set data as a [TileSetData] resource using 'export_path' and 'file_name'.
