@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://dry5jj2wq060u"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jrd2y"]
+shading_mode = 2
+albedo_color = Color(0, 0, 1, 1)
+roughness = 0.5
+
+[sub_resource type="SphereMesh" id="1"]
+material = SubResource("StandardMaterial3D_jrd2y")
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvefm"]
+shading_mode = 2
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.5
+
+[sub_resource type="SphereMesh" id="3"]
+material = SubResource("StandardMaterial3D_hvefm")
+radius = 0.1
+height = 0.2
+radial_segments = 16
+rings = 8
+
+[node name="BitmapTiles" type="Node3D"]
+
+[node name="Empty" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+
+[node name="Full" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+mesh = SubResource("3")

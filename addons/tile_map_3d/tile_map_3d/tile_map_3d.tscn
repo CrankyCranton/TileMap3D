@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw2me1snl6qbd"]
+
+[ext_resource type="Script" path="res://addons/tile_map_3d/tile_map_3d/tile_map_3d.gd" id="1_g5v0k"]
+
+[node name="TileMap3D" type="GridMap"]
+script = ExtResource("1_g5v0k")

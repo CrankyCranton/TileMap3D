@@ -7,8 +7,8 @@
    viewBox="0 0 4.2333332 4.2333335"
    version="1.1"
    id="svg5"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
-   sodipodi:docname="Icon.svg"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="icon.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,18 +26,26 @@
      units="px"
      width="16px"
      inkscape:zoom="21.165587"
-     inkscape:cx="7.2759617"
+     inkscape:cx="7.3232082"
      inkscape:cy="8.6461103"
-     inkscape:window-width="1366"
-     inkscape:window-height="707"
+     inkscape:window-width="1920"
+     inkscape:window-height="1048"
      inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1">
+     inkscape:current-layer="layer1"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1">
     <inkscape:grid
        type="xygrid"
        id="grid866"
-       empspacing="1" />
+       empspacing="1"
+       originx="0"
+       originy="0"
+       spacingy="1"
+       spacingx="1"
+       units="px"
+       visible="true" />
   </sodipodi:namedview>
   <defs
      id="defs2" />
@@ -48,7 +56,7 @@
     <g
        id="g830">
       <rect
-         style="opacity:0.997;fill:#fc9c9c;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
+         style="opacity:0.997;fill:#ff5555;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
          id="rect868"
          width="3.7041667"
          height="0.52916664"
@@ -56,7 +64,7 @@
          y="0.26458335"
          ry="1.190363e-13" />
       <rect
-         style="opacity:0.997;fill:#fc9c9c;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
+         style="opacity:0.997;fill:#ff5555;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
          id="rect914"
          width="3.7041667"
          height="0.52916646"
@@ -64,7 +72,7 @@
          y="1.3229166"
          ry="1.1903626e-13" />
       <rect
-         style="opacity:0.997;fill:#fc9c9c;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
+         style="opacity:0.997;fill:#ff5555;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
          id="rect996"
          width="3.7041667"
          height="0.52916664"
@@ -72,7 +80,7 @@
          y="2.3812499"
          ry="1.190363e-13" />
       <rect
-         style="opacity:0.997;fill:#fc9c9c;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
+         style="opacity:0.997;fill:#ff5555;fill-opacity:1;stroke-width:1.05833;stroke-linecap:round;stroke-linejoin:round"
          id="rect998"
          width="3.7041667"
          height="0.52916664"

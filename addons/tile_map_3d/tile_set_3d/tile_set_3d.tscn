@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cm6ilf8lhradi"]
+
+[ext_resource type="Script" path="res://addons/tile_map_3d/tile_set_3d/tile_set_3d.gd" id="1_la0wy"]
+
+[node name="TileSet3D" type="Node3D"]
+script = ExtResource("1_la0wy")

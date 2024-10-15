@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6cw3jmc0igb6"]
+
+[ext_resource type="MeshLibrary" uid="uid://c1byl0clxfbbt" path="res://addons/tile_map_3d/tile_set_3d/tile_3d/bitmask_3d/bitmask_tiles.meshlib" id="1_prhuc"]
+[ext_resource type="Script" path="res://addons/tile_map_3d/tile_set_3d/tile_3d/bitmask_3d/bitmask_3d.gd" id="2_dg5me"]
+
+[node name="Bitmask3D" type="GridMap"]
+mesh_library = ExtResource("1_prhuc")
+cell_size = Vector3(0.25, 0.25, 0.25)
+cell_center_x = false
+cell_center_y = false
+cell_center_z = false
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("2_dg5me")

@@ -6,44 +6,13 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "GridMap",
-"class": "Bitmask3D",
-"language": "GDScript",
-"path": "res://Bitmask3D/Bitmask3D.gd"
-}, {
-"base": "MeshInstance",
-"class": "Tile",
-"language": "GDScript",
-"path": "res://Tile/Tile.gd"
-}, {
-"base": "GridMap",
-"class": "TileMap3D",
-"language": "GDScript",
-"path": "res://TileMap3D/TileMap3D.gd"
-}, {
-"base": "Spatial",
-"class": "TileSet3D",
-"language": "GDScript",
-"path": "res://TileSet3D/TileSet3D.gd"
-} ]
-_global_script_class_icons={
-"Bitmask3D": "res://Bitmask3D/Icon.svg",
-"Tile": "res://Tile/TileIcon.svg",
-"TileMap3D": "res://TileMap3D/Icon.svg",
-"TileSet3D": "res://TileSet3D/Icon.svg"
-}
+config_version=5
 
 [application]
 
 config/name="TileMap3D"
-config/icon="res://Icon.svg"
-
-[debug]
-
-shapes/collision/contact_color=Color( 1, 0.2, 0.101961, 0.8 )
+config/features=PackedStringArray("4.3")
+config/icon="res://icon.svg"
 
 [physics]
 
